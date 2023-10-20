@@ -1,100 +1,117 @@
 <html>
-    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><style>html{-webkit-print-color-adjust:exact}*{box-sizing:border-box;-webkit-print-color-adjust:exact}html,body{margin:0;padding:0}@media only screen{body{margin:2em auto;max-width:900px;color:#37352f}}body{line-height:1.5;white-space:pre-wrap}a,a.visited{color:inherit;text-decoration:underline}.pdf-relative-link-path{font-size:80%;color:#444}h1,h2,h3{letter-spacing:-0.01em;line-height:1.2;font-weight:600;margin-bottom:0}.page-title{font-size:2.5rem;font-weight:700;margin-top:0;margin-bottom:.75em}h1{font-size:1.875rem;margin-top:1.875rem}h2{font-size:1.5rem;margin-top:1.5rem}h3{font-size:1.25rem;margin-top:1.25rem}.source{border:1px solid #ddd;border-radius:3px;padding:1.5em;word-break:break-all}.callout{border-radius:3px;padding:1rem}figure{margin:1.25em 0;page-break-inside:avoid}figcaption{opacity:.5;font-size:85%;margin-top:.5em}mark{background-color:transparent}.indented{padding-left:1.5em}hr{background:transparent;display:block;width:100%;height:1px;visibility:visible;border:0;border-bottom:1px solid rgba(55,53,47,0.09)}img{max-width:100%}@media only print{img{max-height:100vh;object-fit:contain}}@page{margin:1in}.collection-content{font-size:.875rem}.column-list{display:flex;justify-content:space-between}.column{padding:0 1em}.column:first-child{padding-left:0}.column:last-child{padding-right:0}table,th,td{border:1px solid rgba(55,53,47,0.09);border-collapse:collapse}table{border-left:none;border-right:0}th,td{font-weight:normal;padding:.25em .5em;line-height:1.5;min-height:1.5em;text-align:left}th{color:rgba(55,53,47,0.6)}ol,ul{margin:0;margin-block-start:.6em;margin-block-end:.6em}li>ol:first-child,li>ul:first-child{margin-block-start:.6em}ul>li{list-style:disc}ul.to-do-list{padding-inline-start:0}ul.to-do-list>li{list-style:none}.to-do-children-checked{text-decoration:line-through;opacity:.375}ul{padding-inline-start:1.7em}ul>li{padding-left:.1em}ol{padding-inline-start:1.6em}ol>li{padding-left:.2em}.mono ol{padding-inline-start:2em}.mono ol>li{text-indent:-0.4em}.page-header-icon-with-cover{margin-top:-0.72em;margin-left:.07em}.link-to-page{margin:1em 0;padding:0;border:0;font-weight:500}p>.user{opacity:.5}td>.user,td>time{white-space:nowrap}input[type="checkbox"]{transform:scale(1.5);margin-right:.6em;vertical-align:middle}p{margin-top:.5em;margin-bottom:.5em}.image{border:0;padding:0;border-radius:0;text-align:center}.code,code{background:rgba(135,131,120,0.15);border-radius:3px;padding:.2em .4em;border-radius:3px;font-size:85%;tab-size:2}code{color:#eb5757}.code{padding:1.5em 1em}.code-wrap{white-space:pre-wrap;word-break:break-all}.code>code{background:0;padding:0;font-size:100%;color:inherit}blockquote{font-size:1.25em;margin:1em 0;padding-left:1em;border-left:3px solid #37352f}.sans{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol"}.code{font-family:"SFMono-Regular",Menlo,Consolas,"PT Mono","Liberation Mono",Courier,monospace}.serif{font-family:Lyon-Text,Georgia,ui-serif,serif}.mono{font-family:iawriter-mono,Nitti,Menlo,Courier,monospace}</style></head>
-    <body>
-      <h1>여기 아래에 나타나는 결과물을 확인하세요.</h1>
-      <div id="change"><article id="7605f846-85f9-4419-a3a9-1a783a11d018" class="page sans"><div id="container" class="page-body"><img id="myImg" style="width: inherit" src="" /><p id="myParagraph" class=""></p></div></article></div>
-      
-      <div style="display: flex; flex-direction: row">
-        <section style="width: 50%">
-          <label style="display:block; color:#eb5757; font-weight: bold;">이미지url *필수 </label><input
-            style="height: 30px; width: 300px"
-            type="text"
-            id="imgUrlInput"
-            placeholder="하이그래프 이미지 에셋 url 입력하세요"
-          />
-          <div></div>
-          <label style="display: block; color:#eb5757; font-weight: bold;">문제 *필수 </label><input
-            style="height: 30px; width: 300px"
-            type="text"
-            id="textInput"
-            placeholder="문제를 입력하세요"
-          />
-          <div></div>
-          <label style="display: block;">*선택 </label><input
-            style="height: 30px; width: 300px"
-            type="text"
-            id="conditionInput"
-            placeholder="조건을 입력하세요"
-        />
-        <div></div>
-          <button onclick="insertText()">클릭하세요</button>
-        </section>
-        <section style="width: 50%">
-          <div>결과물을 복사해서 하이그래프에 사용하세요</div>
-          <button onclick="copyToClipboard()">텍스트 복사</button>
-          <textarea id="result" style="border: #444 solid 3px"></textarea>
-        </section>
-      </div>
-
-      <script>
-
-        function insertText() {
-          
-          //input값으로 dom 업데이트
-          let text = document.getElementById("textInput").value;
-          document.getElementById("myParagraph").innerHTML = text;
-          let imgUrl = document.getElementById("imgUrlInput").value;
-          document.getElementById("myImg").src = imgUrl;
-
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>html{-webkit-print-color-adjust:exact}*{box-sizing:border-box;-webkit-print-color-adjust:exact}html,body{margin:0;padding:0}@media only screen{body{margin:2em auto;max-width:900px;color:#37352f}}body{line-height:1.5;white-space:pre-wrap}a,a.visited{color:inherit;text-decoration:underline}.pdf-relative-link-path{font-size:80%;color:#444}h1,h2,h3{letter-spacing:-0.01em;line-height:1.2;font-weight:600;margin-bottom:0}.page-title{font-size:2.5rem;font-weight:700;margin-top:0;margin-bottom:.75em}h1{font-size:1.875rem;margin-top:1.875rem}h2{font-size:1.5rem;margin-top:1.5rem}h3{font-size:1.25rem;margin-top:1.25rem}.source{border:1px solid #ddd;border-radius:3px;padding:1.5em;word-break:break-all}.callout{border-radius:3px;padding:1rem}figure{margin:1.25em 0;page-break-inside:avoid}figcaption{opacity:.5;font-size:85%;margin-top:.5em}mark{background-color:transparent}.indented{padding-left:1.5em}hr{background:transparent;display:block;width:100%;height:1px;visibility:visible;border:0;border-bottom:1px solid rgba(55,53,47,0.09)}img{max-width:100%}@media only print{img{max-height:100vh;object-fit:contain}}@page{margin:1in}.collection-content{font-size:.875rem}.column-list{display:flex;justify-content:space-between}.column{padding:0 1em}.column:first-child{padding-left:0}.column:last-child{padding-right:0}table,th,td{border:1px solid rgba(55,53,47,0.09);border-collapse:collapse}table{border-left:none;border-right:0}th,td{font-weight:normal;padding:.25em .5em;line-height:1.5;min-height:1.5em;text-align:left}th{color:rgba(55,53,47,0.6)}ol,ul{margin:0;margin-block-start:.6em;margin-block-end:.6em}li>ol:first-child,li>ul:first-child{margin-block-start:.6em}ul>li{list-style:disc}ul.to-do-list{padding-inline-start:0}ul.to-do-list>li{list-style:none}.to-do-children-checked{text-decoration:line-through;opacity:.375}ul{padding-inline-start:1.7em}ul>li{padding-left:.1em}ol{padding-inline-start:1.6em}ol>li{padding-left:.2em}.mono ol{padding-inline-start:2em}.mono ol>li{text-indent:-0.4em}.page-header-icon-with-cover{margin-top:-0.72em;margin-left:.07em}.link-to-page{margin:1em 0;padding:0;border:0;font-weight:500}p>.user{opacity:.5}td>.user,td>time{white-space:nowrap}input[type="checkbox"]{transform:scale(1.5);margin-right:.6em;vertical-align:middle}p{margin-top:.5em;margin-bottom:.5em}.image{border:0;padding:0;border-radius:0;text-align:center}.code,code{background:rgba(135,131,120,0.15);border-radius:3px;padding:.2em .4em;border-radius:3px;font-size:85%;tab-size:2}code{color:#eb5757}.code{padding:1.5em 1em}.code-wrap{white-space:pre-wrap;word-break:break-all}.code>code{background:0;padding:0;font-size:100%;color:inherit}blockquote{font-size:1.25em;margin:1em 0;padding-left:1em;border-left:3px solid #37352f}.sans{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol"}.code{font-family:"SFMono-Regular",Menlo,Consolas,"PT Mono","Liberation Mono",Courier,monospace}.serif{font-family:Lyon-Text,Georgia,ui-serif,serif}.mono{font-family:iawriter-mono,Nitti,Menlo,Courier,monospace}</style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>여기 아래에 나타나는 결과물을 확인하세요.</h1>
+        <div id="change"><article id="7605f846-85f9-4419-a3a9-1a783a11d018" class="page sans"><div id="container" class="page-body"><img id="myImg" style="width:inherit" src="" /><p id="myParagraph" class=""></p></div></article></div>
+      </section>
+      <section class="input-field">
+        <div style="display: flex; flex-direction: row">
+          <section style="width: 50%">
+            <label style="display: block; color: #eb5757; font-weight: bold"
+              >이미지url *필수 </label
+            ><input
+              style="height: 30px; width: 300px"
+              type="text"
+              id="imgUrlInput"
+              placeholder="하이그래프 이미지 에셋 url 입력하세요"
+            />
+            <div></div>
+            <label style="display: block; color: #eb5757; font-weight: bold"
+              >문제 *필수 </label
+            ><input
+              style="height: 30px; width: 300px"
+              type="text"
+              id="textInput"
+              placeholder="문제를 입력하세요"
+            />
+            <div></div>
+            <label style="display: block">*선택 </label
+            ><input
+              style="height: 30px; width: 300px"
+              type="text"
+              id="conditionInput"
+              placeholder="조건을 입력하세요"
+            />
+            <div></div>
+            <button onclick="insertText()">클릭하세요</button>
+          </section>
+          <section style="width: 50%">
+            <div>결과물을 복사해서 하이그래프에 사용하세요</div>
+            <button onclick="copyToClipboard()">텍스트 복사</button>
+            <textarea id="result" style="border: #444 solid 3px"></textarea>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script>
+      function insertText() {
+        //input값으로 dom 업데이트
+        let text = document.getElementById("textInput").value;
+        document.getElementById("myParagraph").innerHTML = text;
+        let imgUrl = document.getElementById("imgUrlInput").value;
+        document.getElementById("myImg").src = imgUrl;
 
         //조건 단락이 있는 경우.
         function convertToOrderedList(inputText) {
-            // 입력 텍스트를 공백과 점 기준으로 분할
-            const items = inputText.split(/(\d+\.\s*)/).filter(Boolean);
-            let htmlOutput = '<h3>조건</h3><ol>';
+          const items = inputText.split(/(\d+\.\s*)/).filter(Boolean);
+          let htmlOutput = "<h3>조건</h3><ol>";
 
-            for (let i = 0; i < items.length; i += 2) {
-                const itemNumber = items[i].trim();
-                const itemContent = items[i + 1].trim();
-                htmlOutput += `<li>${itemContent}</li>`;
-            }
+          for (let i = 0; i < items.length; i += 2) {
+            const itemNumber = items[i].trim();
+            const itemContent = items[i + 1].trim();
+            htmlOutput += `<li>${itemContent}</li>`;
+          }
 
-            htmlOutput += '</ol>';
+          htmlOutput += "</ol>";
+        
 
-            return htmlOutput;
+          return htmlOutput;
         }
+
+
+        const inputText = document.getElementById("conditionInput").value;
+        if(inputText){
+          console.log(inputText);
+          updateDOMWithOrderedList(inputText);
+        }
+
 
         function updateDOMWithOrderedList(inputText) {
-            const convertedHtml = convertToOrderedList(inputText);
-            const conditionParagraph = document.createElement('p');
-            conditionParagraph.setAttribute('id','conditions');
-            document.querySelector('#container').appendChild(conditionParagraph);
-            
-            const targetElement = document.getElementById('conditions'); // 이 부분은 대상 DOM 요소에 따라 변경 가능합니다.
-            targetElement.innerHTML = convertedHtml;
-        }
+          const convertedHtml = convertToOrderedList(inputText);
+          const conditionParagraph = document.createElement("p");
+          conditionParagraph.setAttribute("id", "conditions");
+          document.querySelector("#container").appendChild(conditionParagraph);
 
-        const inputText = document.getElementById('conditionInput').value;
-        console.log(inputText)
-        updateDOMWithOrderedList(inputText);
+          const targetElement = document.getElementById("conditions"); // 이 부분은 대상 DOM 요소에 따라 변경 가능합니다.
+          targetElement.innerHTML = convertedHtml;
+        }
 
         //결과 합치기
         const style = document.querySelector("style").outerHTML;
         const after = document.querySelector("#change").outerHTML;
-        const condition = document.querySelector("#condition").outerHTML        
+        console.log(after);
 
         const prefix = `&lt;html&gt;&lt;body&gt;&lt;head&gt; &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;${style} &lt;/head&gt;`;
         const suffix = `${after}&lt;/body&gt;&lt;/html&gt;`;
-        console.log(suffix)
         const result = prefix + suffix;
-        document.querySelector("#result").innerHTML = result;
-        
-        function copyToClipboard() {
+        console.log(result.replace(/&lt;/g, "<").replace(/&gt;/g, ">"));
+
+        document.querySelector("#result").value = result.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+      }
+
+      function copyToClipboard() {
           document.querySelector("#result").select();
           document.execCommand("copy");
+          
+          document.querySelector("#result").value = null;  // textarea의 내용 삭제        
+          document.querySelector("#result").innerText='';
           alert("텍스트가 복사되었습니다!");
-        }
       }
-      </script>
+    </script>
   </body>
 </html>
