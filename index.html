@@ -683,8 +683,8 @@
       function copyToClipboard() {
           document.querySelector("#result").select();
           document.execCommand("copy");
-          reset();
           alert("텍스트가 복사되었습니다!");
+          reset();
       }
 
       function reset() {
@@ -696,6 +696,8 @@
           for (let i = 0; i < inputFields.length; i++) {
               inputFields[i].value = ''; 
           }
+          document.querySelector("#myParagraph").innerHTML = '';
+          document.querySelector('#myImg').src = '';
       }
 
     </script>
