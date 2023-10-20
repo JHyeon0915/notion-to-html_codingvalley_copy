@@ -5,47 +5,46 @@
   </head>
   <body>
     <main>
-      <section>
+      <section style="width: 100%; text-align: center;">
         <h1>여기 아래에 나타나는 결과물을 확인하세요.</h1>
         <div id="change"><article id="7605f846-85f9-4419-a3a9-1a783a11d018" class="page sans"><div id="container" class="page-body"><img id="myImg" style="width:inherit" src="" /><p id="myParagraph" class=""></p></div></article></div>
       </section>
-      <section class="input-field">
-        <div style="display: flex; flex-direction: row">
-          <section style="width: 50%">
-            <label style="display: block; color: #eb5757; font-weight: bold"
-              >이미지url *필수 </label
-            ><input
-              style="height: 30px; width: 300px"
-              type="text"
-              id="imgUrlInput"
-              placeholder="하이그래프 이미지 에셋 url 입력하세요"
-            />
-            <div></div>
-            <label style="display: block; color: #eb5757; font-weight: bold"
-              >문제 *필수 </label
-            ><input
-              style="height: 30px; width: 300px"
-              type="text"
-              id="textInput"
-              placeholder="문제를 입력하세요"
-            />
-            <div></div>
-            <label style="display: block">*선택 </label
-            ><input
-              style="height: 30px; width: 300px"
-              type="text"
-              id="conditionInput"
-              placeholder="조건을 입력하세요"
-            />
-            <div></div>
-            <button onclick="insertText()">클릭하세요</button>
-          </section>
-          <section style="width: 50%">
-            <div>결과물을 복사해서 하이그래프에 사용하세요</div>
-            <button onclick="copyToClipboard()">텍스트 복사</button>
-            <textarea id="result" style="border: #444 solid 3px"></textarea>
-          </section>
-        </div>
+      <section style="display: flex; flex-direction: row">
+        <section style="width: 50%">
+          <label style="display: block; color: #eb5757; font-weight: bold"
+            >이미지url *필수 </label
+          ><input
+            style="height: 30px; width: 300px"
+            type="text"
+            id="imgUrlInput"
+            placeholder="하이그래프 이미지 에셋 url를 복붙하세요."
+          />
+          <div></div>
+          <label style="display: block; color: #eb5757; font-weight: bold"
+            >문제 *필수 </label
+          ><input
+            style="height: 30px; width: 300px"
+            type="text"
+            id="textInput"
+            placeholder="문제내용을 복붙하세요."
+          />
+          <div></div>
+          <label style="display: block">조건 *선택 </br>(문제에 조건이 있을 때만 사용하세요) </label
+          ><input
+            style="height: 30px; width: 300px"
+            type="text"
+            id="conditionInput"
+            placeholder="조건의 내용만 복붙하세요."
+          />
+          <div></div>
+          <div>이미지url, 문제, (조건)를 채우셨으면<br/>아래 버튼을 클릭하여 변환하세요</div>
+          <button onclick="insertText()">변환</button>
+        </section>
+        <section style="width: 50%">
+          <div>아래 결과물을 복사하여 하이그래프에 업로드하세요</div>
+          <button onclick="copyToClipboard()">텍스트 복사</button>
+          <textarea id="result" style="border: #444 solid 3px; margin-top: 1em;"></textarea>
+        </section>
       </section>
     </main>
     <script>
