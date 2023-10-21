@@ -24,14 +24,16 @@
         <label for="imgUrlInput" class="require">이미지url *필수</label>
         <input type="text" id="imgUrlInput" placeholder="이미지 에셋 url를 복붙하세요." />
       </section>
-      <button onclick="insertText()">✨바꾸기✨</button>
+      <button id="convert-button" onclick="convert()">✨바꾸기✨</button>
       <section id="preview">
       <div>
         <button id="copy-button" onclick="copyToClipboard()">복사</button>
       </div>
         <div id="updatedParagraph">
           <section class="page sans">
-            <div id="container" class="page-body"><img id="myImg" src="" />
+            <div id="container" class="page-body">
+              <span id="image-loading-error" class="message">이미지 로딩에 실패했습니다.</span>
+              <img id="myImg" src="" />
               <p id="myParagraph" class=""></p>
             </div>
           </section>

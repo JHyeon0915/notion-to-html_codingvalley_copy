@@ -46,7 +46,7 @@ textarea {
   top: -1000px;
 }
 img {
-  width: 100%;
+  max-width: 100%;
   min-height: 10px;
   object-fit: cover;
 }
@@ -67,6 +67,7 @@ img {
   color: rgb(235, 87, 87); 
 }
 #copy-button{
+  display: none;
   position: absolute;
   top: 5px;
   right: 5px;
@@ -78,4 +79,14 @@ img {
   width: fit-content;
   margin: 0 0 50px 0;
   background-color: rgb(202, 213, 224);
+}
+
+.message {
+  display: none;
+  color: rgb(235, 87, 87);
+  font-style: italic;
+}
+
+#updatedParagraph {
+  width: 100%;
 }
