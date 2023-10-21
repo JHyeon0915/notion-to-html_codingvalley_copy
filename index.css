@@ -47,13 +47,14 @@ textarea {
 }
 img {
   width: 100%;
+  min-height: 10px;
   object-fit: cover;
 }
 #preview {
   position: relative;
   width: 40%;
   min-height: 70%;
-  border: 2px dashed rgb(128, 128, 128)080;
+  border: 2px dashed rgb(128, 128, 128);
   border-radius: 30px;
 }
 #utill{
@@ -67,7 +68,7 @@ img {
 }
 #copy-button{
   position: absolute;
-  top: -45px;
+  top: 5px;
   right: 5px;
   font-size: 1rem;
   width: fit-content;
