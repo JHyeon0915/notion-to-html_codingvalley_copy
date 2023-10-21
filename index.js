@@ -1,18 +1,17 @@
 function insertText() {
   //input값으로 dom 업데이트
   let text = document.getElementById("textInput").value;
-  document.getElementById("myParagraph").innerHTML = text;
   let imgUrl = document.getElementById("imgUrlInput").value;
+  document.getElementById("myParagraph").innerHTML = text;
   document.getElementById("myImg").src = imgUrl;
 
-  //조건 단락이 있는 경우.
   function convertToOrderedList(inputText) {
     const items = inputText.split(/(\d+\.\s*)/).filter(Boolean);
     let htmlOutput = "<h3>조건</h3>";
-    startNumber = 1;
-    for (let i = 0; i < items.length; i += 2) {
+    let startNumber = 1;
+    // '1.(공백)조건 2.(공백)조건2' 와 같은 문자열을 처리 
+    for (let i = 0 ; i < items.length ; i += 2) {
       htmlOutput += `<ol type="1" start="${startNumber}" class="numbered-list">`
-      const itemNumber = items[i].trim();
       const itemContent = items[i + 1].trim();
       htmlOutput += `<li>${itemContent}</li></ol>`;
       startNumber++;
@@ -20,27 +19,25 @@ function insertText() {
     return htmlOutput;
   }
 
-
-  const inputText = document.getElementById("conditionInput").value;
-  if(inputText) updateDOMWithOrderedList(inputText); 
-
-
   function updateDOMWithOrderedList(inputText) {
     const convertedHtml = convertToOrderedList(inputText);
     const conditionParagraph = document.createElement("p");
+    const targetElement = document.getElementById("conditions");
+
     conditionParagraph.setAttribute("id", "conditions");
     document.querySelector("#container").appendChild(conditionParagraph);
-
-    const targetElement = document.getElementById("conditions"); // 이 부분은 대상 DOM 요소에 따라 변경 가능합니다.
     targetElement.innerHTML = convertedHtml;
   }
 
+  const inputCondition = document.getElementById("conditionInput").value;
+  if (inputCondition) updateDOMWithOrderedList(inputCondition); 
+
   //결과 합치기
   const style = document.querySelector("style").outerHTML;
-  const after = document.querySelector("#change").outerHTML;
+  const updatedParagraph = document.querySelector("#updatedParagraph").outerHTML;
 
-  const prefix = `&lt;html&gt;&lt;body&gt;&lt;head&gt; &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;${style} &lt;/head&gt;`;
-  const suffix = `${after}&lt;/body&gt;&lt;/html&gt;`;
+  const prefix = `&lt;html&gt;&lt;body&gt;&lt;head&gt; &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;${style}&lt;/head&gt;`;
+  const suffix = `${updatedParagraph}&lt;/body&gt;&lt;/html&gt;`;
   const result = prefix + suffix;
 
   document.querySelector("#result").value = result.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
