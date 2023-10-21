@@ -15,10 +15,11 @@ function convertToOrderedList(inputText) {
 function updateDOMWithOrderedList(inputText) {
   const convertedHtml = convertToOrderedList(inputText);
   const conditionParagraph = document.createElement("p");
-  const targetElement = document.getElementById("conditions");
-
+  
   conditionParagraph.setAttribute("id", "conditions");
   document.querySelector("#container").appendChild(conditionParagraph);
+
+  const targetElement = document.getElementById("conditions");
   targetElement.innerHTML = convertedHtml;
 }
 
@@ -90,7 +91,6 @@ function reset() {
     copyButton.style.display = "none";
     image.style.display = "none";
     message.style.display = "none";
-    console.log('ddd')
   };
     
 } 
