@@ -21,16 +21,17 @@
         <label for="imgUrlInput" class="require">이미지url *필수</label>
         <input type="text" id="imgUrlInput" placeholder="이미지 에셋 url를 복붙하세요." />
       </section>
-      <button id="convert-button" onclick="convert()">✨바꾸기✨</button>
-      <section id="preview">
-          <button id="copy-button" onclick="copyToClipboard()">복사</button>
-        <div id="updatedParagraph">
-            <section class="page sans">
-              <div id="container" class="page-body">
-                <img id="myImg" src="" />
-                <p id="myParagraph" class=""></p>
-              </div>
-            </section>
+      <div><button id="convert-button" onclick="convert()">✨바꾸기✨</button>
+      <button id="copy-button" onclick="copyToClipboard()">복사</button></div>
+        <div id="preview">  
+          <div id="updatedParagraph">
+              <section class="page sans">
+                <div id="container" class="page-body">
+                  <img id="myImg" src="" />
+                  <p id="myParagraph" class=""></p>
+                </div>
+              </section>
+          </div>
         </div>
       </section>
       <textarea id="result"></textarea>
