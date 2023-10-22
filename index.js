@@ -66,10 +66,10 @@ function copyToClipboard() {
   navigator.clipboard
     .writeText(result.value)
     .then(() => {
-      alert("successfully copied");
+      alert("텍스트 복사 완료!");
     })
     .catch(() => {
-      alert("something went wrong");
+      alert("텍스트 복사를 실패했습니다.");
     });
   reset();
 }
