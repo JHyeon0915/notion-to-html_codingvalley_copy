@@ -59,10 +59,19 @@ function convert() {
 }
 
 function copyToClipboard() {
-    document.querySelector("#result").select();
-    document.execCommand("copy");
-    alert("텍스트가 복사되었습니다!");
-    reset();
+  const result = document.querySelector("#result");
+  console.log(result)
+  result.select();
+  result.setSelectionRange(0, 99999);
+  navigator.clipboard
+    .writeText(result.value)
+    .then(() => {
+      alert("successfully copied");
+    })
+    .catch(() => {
+      alert("something went wrong");
+    });
+  reset();
 }
 
 function reset() {
