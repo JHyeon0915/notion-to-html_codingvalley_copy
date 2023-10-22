@@ -1,0 +1,98 @@
+
+body{
+  margin: 0;
+  height: 90%;
+  color: rgb(39,40,42);
+  font-weight: bold;
+}
+header {
+  box-sizing: border-box;
+  text-align: center;
+  padding: 5px;
+}
+main {
+  width: 80vw;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 24px;
+}
+label, input {
+  font-size: 1.2rem;
+}
+input {
+  height: 50px;
+  max-width: 500px;
+  margin-bottom: 50px;
+}
+section {
+  box-sizing: border-box;
+  padding: 12px;
+}
+button {
+  font-size: 1.5rem;
+  margin: 12px;
+  padding: 20px;
+  border: 1px solid  rgb(186, 201, 216);
+  border-radius: 20px;
+  background-color: rgb(97, 169, 242);
+  cursor: pointer;
+  color:rgb(255, 255, 255)
+}
+textarea {
+  position: absolute;
+  top: -1000px;
+}
+img {
+  max-width: 100%;
+  min-height: 10px;
+  object-fit: cover;
+}
+#preview {
+  position: relative;
+  width: 40%;
+  max-height: 30rem; 
+  border: 2px dashed rgb(128, 128, 128);
+  border-radius: 30px;
+  font-weight: normal;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer */
+
+    /* Chrome & Safari */
+}
+#utill{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+}
+.require { 
+  color: rgb(235, 87, 87); 
+}
+#copy-button{
+  font-size: 1rem;
+  width: fit-content;
+  background-color: rgb(87, 225, 235);
+}
+#reset-button {
+  width: fit-content;
+  margin: 0 0 50px 0;
+  background-color: rgb(202, 213, 224);
+}
+
+.message {
+  display: none;
+  color: rgb(235, 87, 87);
+  font-style: italic;
+}
+
+#updatedParagraph {
+  width: 100%;
+}
+
+#preview::-webkit-scrollbar {
+    display: none;
+}
