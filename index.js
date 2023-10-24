@@ -88,23 +88,23 @@ function reset() {
     inputFields[i].value = "";
   }
 
-  document.querySelector("#myParagraph").innerHTML = "";
-  const image = document.querySelector("#myImg");
-  const message = document.getElementById("image-loading-error");
-  const copyButton = document.getElementById("copy-button");
-  image.src = "";
-  message.style.display = "none";
-  image.onload = function () {
-    // 이미지 로딩이 완료되면 버튼을 표시
-    copyButton.style.display = "block";
-    image.style.display = "block";
-    message.style.display = "none";
-  };
-  image.onerror = function () {
-    copyButton.style.display = "none";
-    image.style.display = "none";
-    message.style.display = "none";
-  };
+  // document.querySelector("#myParagraph").innerHTML = "";
+  // const image = document.querySelector("#myImg");
+  // const message = document.getElementById("image-loading-error");
+  // const copyButton = document.getElementById("copy-button");
+  // image.src = "";
+  // message.style.display = "none";
+  // image.onload = function () {
+  //   // 이미지 로딩이 완료되면 버튼을 표시
+  //   copyButton.style.display = "block";
+  //   image.style.display = "block";
+  //   message.style.display = "none";
+  // };
+  // image.onerror = function () {
+  //   copyButton.style.display = "none";
+  //   image.style.display = "none";
+  //   message.style.display = "none";
+  // };
 }
 
 document.addEventListener("DOMContentLoaded", function () {
