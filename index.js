@@ -1,58 +1,36 @@
 function convertToOrderedList(inputText) {
   const items = inputText.split(/(\d+\.\s*)/).filter(Boolean);
-  let htmlOutput = "<h3>조건</h3>";
-  let startNumber = 1;
+  let htmlOutput = `<h3>조건</h3><ol type="1" start="1">`;
   // '1.(공백)조건 2.(공백)조건2' 와 같은 문자열을 처리
   for (let i = 0; i < items.length; i += 2) {
-    htmlOutput += `<ol type="1" start="${startNumber}" class="numbered-list">`;
     const itemContent = items[i + 1].trim();
-    htmlOutput += `<li>${itemContent}</li></ol>`;
-    startNumber++;
+    htmlOutput += `<li>${itemContent}</li>`;
   }
+  htmlOutput += `</ol>`;
   return htmlOutput;
 }
 
 function updateDOMWithOrderedList(inputText) {
-  const convertedHtml = convertToOrderedList(inputText);
-  const conditionParagraph = document.createElement("p");
-
-  conditionParagraph.setAttribute("id", "conditions");
-  document.querySelector("#container").appendChild(conditionParagraph);
-
-  const targetElement = document.getElementById("conditions");
-  targetElement.innerHTML = convertedHtml;
+  const convertedConditionsHtml = convertToOrderedList(inputText);
+  document.querySelector("#updatedParagraph").innerHTML +=
+    convertedConditionsHtml;
 }
 
 function convert() {
-  const image = document.getElementById("myImg");
-  const copyButton = document.getElementById("copy-button");
-  const message = document.getElementById("image-loading-error");
-
-  image.onload = function () {
-    // 이미지 로딩이 완료되면 버튼을 표시
-    copyButton.style.display = "block";
-    image.style.display = "block";
-    message.style.display = "none";
-  };
-  image.onerror = function () {
-    image.style.display = "none";
-    message.style.display = "block";
-  };
   //input값으로 dom 업데이트
   let text = document.getElementById("textInput").value;
   let imgUrl = document.getElementById("imgUrlInput").value;
-  document.getElementById("myParagraph").innerHTML = text;
+  document.getElementsByTagName("p")[0].innerHTML = text;
   document.getElementById("myImg").src = imgUrl;
 
   const inputCondition = document.getElementById("conditionInput").value;
   if (inputCondition) updateDOMWithOrderedList(inputCondition);
 
   //결과 합치기
-  const style = document.querySelector("style").outerHTML;
   const updatedParagraph =
-    document.querySelector("#updatedParagraph").outerHTML;
+    document.querySelector("#updatedParagraph").innerHTML;
 
-  const prefix = `&lt;html&gt;&lt;head&gt;&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;${style}&lt;/head&gt;&lt;body&gt;`;
+  const prefix = `&lt;html&gt;&lt;head&gt;&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"/&gt;&lt;/head&gt;&lt;body&gt;`;
   const suffix = `${updatedParagraph}&lt;/body&gt;&lt;/html&gt;`;
   const result = prefix + suffix;
 
@@ -80,43 +58,17 @@ function copyToClipboard() {
 function reset() {
   document.querySelector("#result").value = "";
   document.querySelector("#result").innerText = "";
-  if (document.querySelector("#conditions"))
-    document.querySelector("#conditions").remove();
+  if (document.getElementsByTagName("ol")[0]) {
+    document.getElementsByTagName("ol")[0].remove();
+    document.getElementsByTagName("h3")[0].remove();
+  }
 
   const inputFields = document.querySelectorAll("input");
   for (let i = 0; i < inputFields.length; i++) {
     inputFields[i].value = "";
   }
 
-  // document.querySelector("#myParagraph").innerHTML = "";
-  // const image = document.querySelector("#myImg");
-  // const message = document.getElementById("image-loading-error");
-  // const copyButton = document.getElementById("copy-button");
-  // image.src = "";
-  // message.style.display = "none";
-  // image.onload = function () {
-  //   // 이미지 로딩이 완료되면 버튼을 표시
-  //   copyButton.style.display = "block";
-  //   image.style.display = "block";
-  //   message.style.display = "none";
-  // };
-  // image.onerror = function () {
-  //   copyButton.style.display = "none";
-  //   image.style.display = "none";
-  //   message.style.display = "none";
-  // };
+  document.getElementsByTagName("p")[0].innerHTML = "";
+  const image = document.querySelector("#myImg");
+  image.src = "";
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  const image = document.getElementById("myImg");
-  const copyButton = document.getElementById("copy-button");
-  const message = document.getElementById("image-loading-error");
-  image.onload = function () {
-    // 이미지 로딩이 완료되면 버튼을 표시
-    copyButton.style.display = "block";
-  };
-  image.onerror = function () {
-    image.style.display = "none";
-    message.style.display = "none";
-  };
-});
