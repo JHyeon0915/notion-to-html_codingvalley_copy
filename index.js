@@ -21,7 +21,7 @@ function convert() {
   let text = document.getElementById("textInput").value;
   let imgUrl = document.getElementById("imgUrlInput").value;
   document.getElementsByTagName("p")[0].innerHTML = text;
-  document.getElementById("myImg").src = imgUrl;
+  document.getElementsByTagName("img")[0].src = imgUrl;
 
   const inputCondition = document.getElementById("conditionInput").value;
   if (inputCondition) updateDOMWithOrderedList(inputCondition);
@@ -69,6 +69,6 @@ function reset() {
   }
 
   document.getElementsByTagName("p")[0].innerHTML = "";
-  const image = document.querySelector("#myImg");
+  const image = document.getElementsByTagName("img")[0];
   image.src = "";
 }
