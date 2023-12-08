@@ -9,6 +9,8 @@
     <main>
       <section id="utill">
         <button id="reset-button" onclick="reset()">초기화</button>
+        <label for="imgUrlInput">일러스트 이미지url</label>
+        <input type="text" id="imgUrlInput" placeholder="이미지 에셋 url를 복붙하세요." />
         <label for="textInput" class="require">문제 *필수</label> 
         <input
         type="text"
@@ -28,8 +30,8 @@
         id="unorderedConditionInput"
         placeholder="숫자 붙은 조건의 내용만 복붙하세요."
         /> 
-        <label for="imgUrlInput" class="require">이미지url *필수</label>
-        <input type="text" id="imgUrlInput" placeholder="이미지 에셋 url를 복붙하세요." />
+        <label for="exampleImgUrlInput">예시 이미지url</label>
+        <input type="text" id="exampleImgUrlInput" placeholder="이미지 에셋 url를 복붙하세요." />
       </section>
       <div><button id="convert-button" onclick="convert()">✨바꾸기✨</button>
       <button id="copy-button" onclick="copyToClipboard()">복사</button></div>
@@ -37,6 +39,8 @@
           <div id="updatedParagraph">
             <img src=""/>
             <p></p>
+            <div id="condition-box"></div>
+            <img src=""/>
           </div>
         </div>
       </section>

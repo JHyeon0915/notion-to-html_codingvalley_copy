@@ -39,22 +39,19 @@ function convertToUnorderedList(inputText) {
 
 function updateDOMWithOrderedList(inputText) {
   const convertedConditionsHtml = convertToOrderedList(inputText);
-  document.querySelector("#updatedParagraph").innerHTML +=
-    convertedConditionsHtml;
+  document.querySelector("#condition-box").innerHTML += convertedConditionsHtml;
 }
 
 function updateDOMWithUnorderedList(inputText) {
   const convertedConditionsHtml = convertToUnorderedList(inputText);
-  document.querySelector("#updatedParagraph").innerHTML +=
-    convertedConditionsHtml;
+  document.querySelector("#condition-box").innerHTML += convertedConditionsHtml;
 }
 
 function convert() {
-  //input값으로 dom 업데이트
-  let text = document.getElementById("textInput").value;
-  let imgUrl = document.getElementById("imgUrlInput").value;
-  document.getElementsByTagName("p")[0].innerHTML = text;
-  document.getElementsByTagName("img")[0].src = imgUrl;
+  document.getElementsByTagName("p")[0].innerHTML =
+    document.getElementById("textInput").value;
+  document.getElementsByTagName("img")[0].src =
+    document.getElementById("imgUrlInput").value;
 
   const inpuOrderedCondition = document.getElementById(
     "orderedConditionInput"
@@ -66,6 +63,9 @@ function convert() {
   ).value;
   if (inputUnorderedCondition)
     updateDOMWithUnorderedList(inputUnorderedCondition);
+
+  document.getElementsByTagName("img")[1].src =
+    document.getElementById("exampleImgUrlInput").value;
 
   //결과 합치기
   const updatedParagraph =
@@ -115,6 +115,9 @@ function reset() {
   }
 
   document.getElementsByTagName("p")[0].innerHTML = "";
-  const image = document.getElementsByTagName("img")[0];
-  image.src = "";
+  document.querySelector("#condition-box").innerHTML = "";
+  const imageIllust = document.getElementsByTagName("img")[0];
+  imageIllust.src = "";
+  const imageExample = document.getElementsByTagName("img")[1];
+  imageExample.src = "";
 }
