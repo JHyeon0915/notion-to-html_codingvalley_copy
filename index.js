@@ -50,12 +50,14 @@ function updateDOMWithUnorderedList(inputText) {
 function convert() {
   document.getElementsByTagName("p")[0].innerHTML =
     document.getElementById("textInput").value;
+
   document.getElementsByTagName("img")[0].src =
     document.getElementById("imgUrlInput").value;
 
   const inpuOrderedCondition = document.getElementById(
     "orderedConditionInput"
   ).value;
+
   if (inpuOrderedCondition) updateDOMWithOrderedList(inpuOrderedCondition);
 
   const inputUnorderedCondition = document.getElementById(
@@ -64,8 +66,11 @@ function convert() {
   if (inputUnorderedCondition)
     updateDOMWithUnorderedList(inputUnorderedCondition);
 
-  document.getElementsByTagName("img")[1].src =
-    document.getElementById("exampleImgUrlInput").value;
+  const exampleImg = document.getElementsByTagName("img")[1];
+  if (exampleImg) {
+    document.querySelector("#title-example").style.display = "block";
+    exampleImg.src = document.getElementById("exampleImgUrlInput").value;
+  }
 
   //결과 합치기
   const updatedParagraph =
@@ -120,4 +125,6 @@ function reset() {
   imageIllust.src = "";
   const imageExample = document.getElementsByTagName("img")[1];
   imageExample.src = "";
+
+  document.querySelector("#title-example").style.display = "none";
 }
