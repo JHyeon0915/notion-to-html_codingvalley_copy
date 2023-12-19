@@ -5,7 +5,6 @@ function convertToOrderedList(inputText) {
   for (let i = 0; i < items.length; i += 2) {
     const itemContent = items[i + 1].trim();
     htmlOutput += `<li>${itemContent}</li>`;
-    console.log("ddd");
   }
   htmlOutput += `</ol>`;
   return htmlOutput;
@@ -58,18 +57,25 @@ function convert() {
     "orderedConditionInput"
   ).value;
 
-  if (inpuOrderedCondition) updateDOMWithOrderedList(inpuOrderedCondition);
+  if (inpuOrderedCondition) {
+    updateDOMWithOrderedList(inpuOrderedCondition);
+  }
 
   const inputUnorderedCondition = document.getElementById(
     "unorderedConditionInput"
   ).value;
-  if (inputUnorderedCondition)
+
+  if (inputUnorderedCondition) {
     updateDOMWithUnorderedList(inputUnorderedCondition);
+  }
 
   const exampleImg = document.getElementsByTagName("img")[1];
-  if (exampleImg) {
+  console.log(document.getElementById("exampleImgUrlInput").value);
+  const exampleImgUrlInputValue =
+    document.getElementById("exampleImgUrlInput").value;
+  if (exampleImgUrlInputValue) {
     document.querySelector("#title-example").style.display = "block";
-    exampleImg.src = document.getElementById("exampleImgUrlInput").value;
+    exampleImg.src = exampleImgUrlInputValue;
   }
 
   //결과 합치기
