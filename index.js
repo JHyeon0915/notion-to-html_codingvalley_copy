@@ -69,13 +69,19 @@ function convert() {
     updateDOMWithUnorderedList(inputUnorderedCondition);
   }
 
-  const exampleImg = document.getElementsByTagName("img")[1];
-  console.log(document.getElementById("exampleImgUrlInput").value);
   const exampleImgUrlInputValue =
     document.getElementById("exampleImgUrlInput").value;
+
   if (exampleImgUrlInputValue) {
-    document.querySelector("#title-example").style.display = "block";
+    const titleH3 = document.createElement("h3");
+    titleH3.id = "title-example";
+    titleH3.innerText = "예시";
+    const exampleImg = document.createElement("img");
     exampleImg.src = exampleImgUrlInputValue;
+
+    const updatedParagraph = document.querySelector("#updatedParagraph");
+    updatedParagraph.appendChild(titleH3);
+    updatedParagraph.appendChild(exampleImg);
   }
 
   //결과 합치기
@@ -128,9 +134,9 @@ function reset() {
   document.getElementsByTagName("p")[0].innerHTML = "";
   document.querySelector("#condition-box").innerHTML = "";
   const imageIllust = document.getElementsByTagName("img")[0];
-  imageIllust.src = "";
+  imageIllust.src = " ";
   const imageExample = document.getElementsByTagName("img")[1];
-  imageExample.src = "";
+  imageExample.src = " ";
 
-  document.querySelector("#title-example").style.display = "none";
+  document.querySelector("#title-example").remove();
 }
