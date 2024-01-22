@@ -36,6 +36,10 @@ function convertToUnorderedList(inputText) {
   return htmlOutput;
 }
 
+function converToCodeTag(inputText) {
+  return inputText.replace(/`(.*?)`/g, "<code>$1</code>");
+}
+
 function updateDOMWithOrderedList(inputText) {
   const convertedConditionsHtml = convertToOrderedList(inputText);
   document.querySelector("#condition-box").innerHTML += convertedConditionsHtml;
@@ -47,18 +51,21 @@ function updateDOMWithUnorderedList(inputText) {
 }
 
 function convert() {
+  console.log(converToCodeTag(document.getElementById("textInput").value));
+
   document.getElementsByTagName("p")[0].innerHTML =
     document.getElementById("textInput").value;
 
   document.getElementsByTagName("img")[0].src =
     document.getElementById("imgUrlInput").value;
 
+  // 조건
   const inpuOrderedCondition = document.getElementById(
     "orderedConditionInput"
   ).value;
 
   if (inpuOrderedCondition) {
-    updateDOMWithOrderedList(inpuOrderedCondition);
+    updateDOMWithOrderedList(converToCodeTag(inpuOrderedCondition));
   }
 
   const inputUnorderedCondition = document.getElementById(
@@ -66,9 +73,10 @@ function convert() {
   ).value;
 
   if (inputUnorderedCondition) {
-    updateDOMWithUnorderedList(inputUnorderedCondition);
+    updateDOMWithUnorderedList(converToCodeTag(inputUnorderedCondition));
   }
 
+  // 이미지
   const exampleImgUrlInputValue =
     document.getElementById("exampleImgUrlInput").value;
 
