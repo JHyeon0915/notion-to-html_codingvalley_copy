@@ -51,6 +51,11 @@ function updateDOMWithUnorderedList(inputText) {
 }
 
 function convert() {
+  if(!document.getElementById("textInput").value.trim()){
+    alert('문제를 입력해 주세요!');
+    return null;
+  }
+
   resetConditionBox();
   resetExampleBox();
 
