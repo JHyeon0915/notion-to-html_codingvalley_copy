@@ -51,15 +51,14 @@ function updateDOMWithUnorderedList(inputText) {
 }
 
 function convert() {
-  console.log(converToCodeTag(document.getElementById("textInput").value));
+  resetConditionBox();
+  resetExampleBox();
 
   document.getElementsByTagName("p")[0].innerHTML =
     document.getElementById("textInput").value;
 
   document.getElementsByTagName("img")[0].src =
     document.getElementById("imgUrlInput").value;
-
-  resetConditionBox();
 
   // 조건
   const inpuOrderedCondition = document.getElementById(
@@ -89,9 +88,9 @@ function convert() {
     const exampleImg = document.createElement("img");
     exampleImg.src = exampleImgUrlInputValue;
 
-    const updatedParagraph = document.querySelector("#updatedParagraph");
-    updatedParagraph.appendChild(titleH3);
-    updatedParagraph.appendChild(exampleImg);
+    const exampleBox = document.querySelector("#example-box");
+    exampleBox.appendChild(titleH3);
+    exampleBox.appendChild(exampleImg);
   }
 
   //결과 합치기
@@ -142,13 +141,11 @@ function reset() {
   }
 
   document.getElementsByTagName("p")[0].innerHTML = "";
-  document.querySelector("#condition-box").innerHTML = "";
   const imageIllust = document.getElementsByTagName("img")[0];
   imageIllust.src = " ";
-  const imageExample = document.getElementsByTagName("img")[1];
-  imageExample.src = " ";
-
-  document.querySelector("#title-example").remove();
+  
+  resetConditionBox();
+  resetExampleBox();
 }
 
 function resetConditionBox(){
@@ -156,5 +153,13 @@ function resetConditionBox(){
 
   while(conditionBox.hasChildNodes()){
     conditionBox.removeChild(conditionBox.firstChild);
+  }
+}
+
+function resetExampleBox(){
+  const exampleBox = document.getElementById("example-box");
+
+  while(exampleBox.hasChildNodes()){
+    exampleBox.removeChild(exampleBox.firstChild);
   }
 }
