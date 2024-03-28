@@ -59,6 +59,8 @@ function convert() {
   document.getElementsByTagName("img")[0].src =
     document.getElementById("imgUrlInput").value;
 
+  resetConditionBox();
+
   // 조건
   const inpuOrderedCondition = document.getElementById(
     "orderedConditionInput"
@@ -147,4 +149,12 @@ function reset() {
   imageExample.src = " ";
 
   document.querySelector("#title-example").remove();
+}
+
+function resetConditionBox(){
+  const conditionBox = document.getElementById("condition-box");
+
+  while(conditionBox.hasChildNodes()){
+    conditionBox.removeChild(conditionBox.firstChild);
+  }
 }
