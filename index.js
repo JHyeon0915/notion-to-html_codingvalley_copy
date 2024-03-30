@@ -51,16 +51,18 @@ function updateDOMWithUnorderedList(inputText) {
 }
 
 function convert() {
-  if(!document.getElementById("textInput").value.trim()){
+  const descInput = document.getElementById("textInput");
+
+  if(!descInput.value.trim()){
     alert('문제를 입력해 주세요!');
+    descInput.focus();
     return null;
   }
 
   resetBox("condition");
   resetBox("example");
 
-  document.getElementsByTagName("p")[0].innerHTML =
-    document.getElementById("textInput").value;
+  document.getElementsByTagName("p")[0].innerHTML = descInput.value;
 
   document.getElementsByTagName("img")[0].src =
     document.getElementById("imgUrlInput").value;
