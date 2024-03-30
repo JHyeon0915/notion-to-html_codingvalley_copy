@@ -56,8 +56,8 @@ function convert() {
     return null;
   }
 
-  resetConditionBox();
-  resetExampleBox();
+  resetBox("condition");
+  resetBox("example");
 
   document.getElementsByTagName("p")[0].innerHTML =
     document.getElementById("textInput").value;
@@ -130,15 +130,6 @@ function copyToClipboard() {
 function reset() {
   document.querySelector("#result").value = "";
   document.querySelector("#result").innerText = "";
-  if (document.getElementsByTagName("ol")[0]) {
-    document.getElementsByTagName("ol")[0].remove();
-    document.getElementsByTagName("h3")[0].remove();
-  }
-
-  if (document.getElementsByTagName("ul")[0]) {
-    document.getElementsByTagName("ul")[0].remove();
-    document.getElementsByTagName("h3")[0].remove();
-  }
 
   const inputFields = document.querySelectorAll("input");
   for (let i = 0; i < inputFields.length; i++) {
@@ -149,20 +140,12 @@ function reset() {
   const imageIllust = document.getElementsByTagName("img")[0];
   imageIllust.src = " ";
   
-  resetConditionBox();
-  resetExampleBox();
+  resetBox("condition");
+  resetBox("example");
 }
 
-function resetConditionBox(){
-  const conditionBox = document.getElementById("condition-box");
-
-  while(conditionBox.hasChildNodes()){
-    conditionBox.removeChild(conditionBox.firstChild);
-  }
-}
-
-function resetExampleBox(){
-  const exampleBox = document.getElementById("example-box");
+function resetBox(type){
+  const exampleBox = document.getElementById(`${type}-box`);
 
   while(exampleBox.hasChildNodes()){
     exampleBox.removeChild(exampleBox.firstChild);
