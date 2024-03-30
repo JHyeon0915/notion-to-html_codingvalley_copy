@@ -62,10 +62,8 @@ function convert() {
   resetBox("condition");
   resetBox("example");
 
-  document.getElementsByTagName("p")[0].innerHTML = descInput.value;
-
-  document.getElementsByTagName("img")[0].src =
-    document.getElementById("imgUrlInput").value;
+  document.getElementById("description").innerHTML = descInput.value;
+  document.getElementById("main-img").src = document.getElementById("imgUrlInput").value;
 
   // 조건
   const inpuOrderedCondition = document.getElementById(
@@ -130,20 +128,19 @@ function copyToClipboard() {
 }
 
 function reset() {
-  document.querySelector("#result").value = "";
-  document.querySelector("#result").innerText = "";
-
   const inputFields = document.querySelectorAll("input");
   for (let i = 0; i < inputFields.length; i++) {
     inputFields[i].value = "";
   }
 
-  document.getElementsByTagName("p")[0].innerHTML = "";
-  const imageIllust = document.getElementsByTagName("img")[0];
-  imageIllust.src = " ";
+  document.getElementById("description").innerHTML = "";
+  document.getElementById("main-img").src = "";
   
   resetBox("condition");
   resetBox("example");
+
+  document.querySelector("#result").value = "";
+  document.querySelector("#result").innerText = "";
 }
 
 function resetBox(type){
