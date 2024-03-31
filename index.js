@@ -31,15 +31,9 @@ function converToCodeTag(inputText) {
   return inputText.replace(/`(.*?)`/g, "<code>$1</code>");
 }
 
-// 순서가 있는 조건을 돔에 추가하는 함수. 인풋: string, 아웃풋: string
-function updateDOMWithOrderedList(inputText) {
-  const convertedConditionsHtml = convertToOrderedList(inputText);
-  document.querySelector("#condition-box").innerHTML += convertedConditionsHtml;
-}
-
-// 순서가 없는 조건을 돔에 추가하는 함수. 인풋: string, 아웃풋: string
-function updateDOMWithUnorderedList(inputText) {
-  const convertedConditionsHtml = convertToUnorderedList(inputText);
+// 조건을 돔에 추가하는 함수. 인풋: string, string
+function updateDOMWithList(inputText, type) {
+  const convertedConditionsHtml = type === "ordered" ? convertToOrderedList(inputText) : convertToUnorderedList(inputText);
   document.querySelector("#condition-box").innerHTML += convertedConditionsHtml;
 }
 
@@ -66,7 +60,7 @@ function convert() {
   ).value;
 
   if (inpuOrderedCondition) {
-    updateDOMWithOrderedList(converToCodeTag(inpuOrderedCondition));
+    updateDOMWithList(converToCodeTag(inpuOrderedCondition), "ordered");
   }
 
   // 순서가 없는 조건 인풋의 값을 담는 변수, string
@@ -75,7 +69,7 @@ function convert() {
   ).value;
 
   if (inputUnorderedCondition) {
-    updateDOMWithUnorderedList(converToCodeTag(inputUnorderedCondition));
+    updateDOMWithList(converToCodeTag(inputUnorderedCondition), "unordered");
   }
 
   // 예시 이미지 URL을 담는 변수, string
@@ -111,7 +105,6 @@ function convert() {
 // 복사 함수
 function copyToClipboard() {
   const result = document.querySelector("#result");
-  console.log(result);
   result.select();
   result.setSelectionRange(0, 99999);
 
