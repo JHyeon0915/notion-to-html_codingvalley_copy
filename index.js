@@ -1,85 +1,82 @@
+// 순서가 있는 리스트로 변환하는 함수. 인풋: string, 아웃풋: string
 function convertToOrderedList(inputText) {
-  const items = inputText.split(/(\d+\.\s*)/).filter(Boolean);
+  const items = inputText.split(/(\d+\.\s*)/).filter(Boolean);  // 숫자로 시작하는 부분을 찾아 분리. 이때 결과 배열에는 빈 문자열이 포함되지 않음
   let htmlOutput = `<h3>조건</h3><ol type="1" start="1">`;
-  // '1.(공백)조건 2.(공백)조건2' 와 같은 문자열을 처리
+
   for (let i = 0; i < items.length; i += 2) {
     const itemContent = items[i + 1].trim();
     htmlOutput += `<li>${itemContent}</li>`;
   }
+
   htmlOutput += `</ol>`;
   return htmlOutput;
 }
 
+// 순서가 없는 리스트로 변환하는 함수. 인풋: string, 아웃풋: string
 function convertToUnorderedList(inputText) {
-  // '-'로 시작하는 부분을 찾아 분리합니다. 이때 결과 배열에는 빈 문자열이 포함되지 않습니다.
-  const items = inputText.split(/-\s+/).filter(Boolean);
-
-  // HTML 리스트 시작
+  const items = inputText.split(/-\s+/).filter(Boolean);  // '-'로 시작하는 부분을 찾아 분리. 이때 결과 배열에는 빈 문자열이 포함되지 않음
   let htmlOutput = `<h3>조건</h3><ul>`;
 
-  // 각 항목에 대해 리스트 항목을 생성합니다.
   for (let i = 0; i < items.length; i++) {
-    // 각 항목의 앞뒤 공백을 제거합니다.
     const itemContent = items[i].trim();
-
-    // 숫자로 시작하는 조건 항목을 처리합니다. 예: '1. 조건'을 '조건'으로 변경합니다.
-    const cleanedItemContent = itemContent.replace(/^\d+\.\s*/, "");
-
-    // HTML 리스트 항목을 추가합니다.
-    htmlOutput += `<li>${cleanedItemContent}</li>`;
+    htmlOutput += `<li>${itemContent}</li>`;
   }
 
-  // HTML 리스트 종료
   htmlOutput += `</ul>`;
-
-  // 생성된 HTML 문자열을 반환합니다.
   return htmlOutput;
 }
 
+// 인풋 텍스트를 코드 태그로 감싸주는 함수. 인풋: string, 아웃풋: string
 function converToCodeTag(inputText) {
   return inputText.replace(/`(.*?)`/g, "<code>$1</code>");
 }
 
-function updateDOMWithOrderedList(inputText) {
-  const convertedConditionsHtml = convertToOrderedList(inputText);
+// 조건을 돔에 추가하는 함수. 인풋: string, string
+function updateDOMWithList(inputText, type) {
+  const convertedConditionsHtml = type === "ordered" ? convertToOrderedList(inputText) : convertToUnorderedList(inputText);
   document.querySelector("#condition-box").innerHTML += convertedConditionsHtml;
 }
 
-function updateDOMWithUnorderedList(inputText) {
-  const convertedConditionsHtml = convertToUnorderedList(inputText);
-  document.querySelector("#condition-box").innerHTML += convertedConditionsHtml;
-}
-
+// 인풋 값을 HTML으로 바꿔서 preview로 보여주는 함수
 function convert() {
-  console.log(converToCodeTag(document.getElementById("textInput").value));
+  const descInput = document.getElementById("textInput");
 
-  document.getElementsByTagName("p")[0].innerHTML =
-    document.getElementById("textInput").value;
+  // 필수 문제 유효성 체크
+  if(!descInput.value.trim()){
+    alert('문제를 입력해 주세요!');
+    descInput.focus();
+    return null;
+  }
 
-  document.getElementsByTagName("img")[0].src =
-    document.getElementById("imgUrlInput").value;
+  resetBox("condition");
+  resetBox("example");
 
-  // 조건
+  document.getElementById("description").innerHTML = descInput.value;
+  document.getElementById("main-img").src = document.getElementById("imgUrlInput").value;
+
+  // 순서가 있는 조건 인풋의 값을 담는 변수, string
   const inpuOrderedCondition = document.getElementById(
     "orderedConditionInput"
   ).value;
 
   if (inpuOrderedCondition) {
-    updateDOMWithOrderedList(converToCodeTag(inpuOrderedCondition));
+    updateDOMWithList(converToCodeTag(inpuOrderedCondition), "ordered");
   }
 
+  // 순서가 없는 조건 인풋의 값을 담는 변수, string
   const inputUnorderedCondition = document.getElementById(
     "unorderedConditionInput"
   ).value;
 
   if (inputUnorderedCondition) {
-    updateDOMWithUnorderedList(converToCodeTag(inputUnorderedCondition));
+    updateDOMWithList(converToCodeTag(inputUnorderedCondition), "unordered");
   }
 
-  // 이미지
+  // 예시 이미지 URL을 담는 변수, string
   const exampleImgUrlInputValue =
     document.getElementById("exampleImgUrlInput").value;
 
+  // 예시 타이틀과 이미지를 돔에 추가
   if (exampleImgUrlInputValue) {
     const titleH3 = document.createElement("h3");
     titleH3.id = "title-example";
@@ -87,12 +84,12 @@ function convert() {
     const exampleImg = document.createElement("img");
     exampleImg.src = exampleImgUrlInputValue;
 
-    const updatedParagraph = document.querySelector("#updatedParagraph");
-    updatedParagraph.appendChild(titleH3);
-    updatedParagraph.appendChild(exampleImg);
+    const exampleBox = document.querySelector("#example-box");
+    exampleBox.appendChild(titleH3);
+    exampleBox.appendChild(exampleImg);
   }
 
-  //결과 합치기
+  // 결과 합치기
   const updatedParagraph =
     document.querySelector("#updatedParagraph").innerHTML;
 
@@ -105,11 +102,12 @@ function convert() {
     .replace(/&gt;/g, ">");
 }
 
+// 복사 함수
 function copyToClipboard() {
   const result = document.querySelector("#result");
-  console.log(result);
   result.select();
   result.setSelectionRange(0, 99999);
+
   navigator.clipboard
     .writeText(result.value)
     .then(() => {
@@ -118,33 +116,32 @@ function copyToClipboard() {
     .catch(() => {
       alert("텍스트 복사를 실패했습니다.");
     });
+
   reset();
 }
 
+// 초기화 함수
 function reset() {
-  document.querySelector("#result").value = "";
-  document.querySelector("#result").innerText = "";
-  if (document.getElementsByTagName("ol")[0]) {
-    document.getElementsByTagName("ol")[0].remove();
-    document.getElementsByTagName("h3")[0].remove();
-  }
-
-  if (document.getElementsByTagName("ul")[0]) {
-    document.getElementsByTagName("ul")[0].remove();
-    document.getElementsByTagName("h3")[0].remove();
-  }
-
   const inputFields = document.querySelectorAll("input");
   for (let i = 0; i < inputFields.length; i++) {
     inputFields[i].value = "";
   }
 
-  document.getElementsByTagName("p")[0].innerHTML = "";
-  document.querySelector("#condition-box").innerHTML = "";
-  const imageIllust = document.getElementsByTagName("img")[0];
-  imageIllust.src = " ";
-  const imageExample = document.getElementsByTagName("img")[1];
-  imageExample.src = " ";
+  document.getElementById("description").innerHTML = "";
+  document.getElementById("main-img").src = "";
+  
+  resetBox("condition");
+  resetBox("example");
 
-  document.querySelector("#title-example").remove();
+  document.querySelector("#result").value = "";
+  document.querySelector("#result").innerText = "";
+}
+
+// condition-box 또는 example-box를 초기화 하는 함수
+function resetBox(type){
+  const exampleBox = document.getElementById(`${type}-box`);
+
+  while(exampleBox.hasChildNodes()){
+    exampleBox.removeChild(exampleBox.firstChild);
+  }
 }

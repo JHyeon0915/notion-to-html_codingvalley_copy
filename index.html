@@ -11,20 +11,20 @@
         <button id="reset-button" onclick="reset()">초기화</button>
         <label for="imgUrlInput">일러스트 이미지url</label>
         <input type="text" id="imgUrlInput" placeholder="이미지 에셋 url를 복붙하세요." />
-        <label for="textInput" class="require">문제 *필수</label> 
+        <label for="textInput" class="required">문제 *필수</label> 
         <input
         type="text"
         id="textInput"
         placeholder="문제 내용을 복붙하세요."
         />
-        <label for="conditionInput">숫자 모양 조건 *선택 <br/> ex: 1. 조건 2. 조건..</label>
+        <label for="orderedConditionInput">숫자 모양 조건 *선택 <br/> ex: 1. 조건 2. 조건..</label>
         <input
         type="text"
         id="orderedConditionInput"
         placeholder="숫자 붙은 조건의 내용만 복붙하세요."
         />
         <div></div>
-        <label for="conditionInput">점모양 조건 *선택 <br/> ex: - 조건 - 조건..</label>
+        <label for="unorderedConditionInput">점모양 조건 *선택 <br/> ex: - 조건 - 조건..</label>
         <input
         type="text"
         id="unorderedConditionInput"
@@ -37,9 +37,10 @@
       <button id="copy-button" onclick="copyToClipboard()">복사</button></div>
         <div id="preview">  
           <div id="updatedParagraph">
-            <img src=""/>
-            <p></p>
+            <img id="main-img" src=""/>
+            <p id="description"></p>
             <div id="condition-box"></div>
+            <div id="example-box"></div>
           </div>
         </div>
       </section>
